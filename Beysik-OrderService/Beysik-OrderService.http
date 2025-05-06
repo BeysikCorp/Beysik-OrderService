@@ -1,0 +1,6 @@
+@Beysik_OrderService_HostAddress = http://localhost:5056
+
+GET {{Beysik_OrderService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
