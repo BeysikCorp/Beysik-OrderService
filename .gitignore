@@ -2,5 +2,4 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Beysik-OrderService/.vs/Beysik-OrderService
-/Beysik-OrderService/.vs/ProjectEvaluation
+/Beysik-OrderService/.vs
