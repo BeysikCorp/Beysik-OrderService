@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("4e4b5043-0287-4bce-b844-46a76b989a89")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Beysik-OrderService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2abdf6405e4cbb6772a76439ffafa0910ce8ff83")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92b481e26b355d54518b0ba2cd4c7dc9bdf340c9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Beysik-OrderService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Beysik-OrderService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

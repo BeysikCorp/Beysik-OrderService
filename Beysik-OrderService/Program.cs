@@ -1,3 +1,6 @@
+using SQLite;
+using Beysik_OrderService.Services;
+using Beysik_Common;
 
 namespace Beysik_OrderService
 {
@@ -8,6 +11,13 @@ namespace Beysik_OrderService
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddSingleton<OrderService>();
+
+            //var rconnectionstring = builder.Configuration.GetConnectionString("RabbitMQConnection");
+
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddSingleton<ISQLiteConnection>(new SQLiteConnection(connectionString));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
