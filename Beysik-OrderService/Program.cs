@@ -1,6 +1,7 @@
 using SQLite;
 using Beysik_OrderService.Services;
 using Beysik_Common;
+using RabbitMQ.Client;
 
 namespace Beysik_OrderService
 {
@@ -13,6 +14,56 @@ namespace Beysik_OrderService
             // Add services to the container.
 
             builder.Services.AddSingleton<OrderService>();
+            //builder.Services.AddSingleton<RabbitMqHelper>(sp => new RabbitMqHelper(builder.Configuration["RabbitMQConnection"]));
+            builder.Services.AddSingleton<RabbitMqHelper>(sp => new RabbitMqHelper(
+                builder.Configuration.GetSection("RabbitMQ").GetSection("HostName").Value));
+            //builder.Services.AddSingleton<RabbitMqConsumerService>(
+            //);
+
+            builder.Services.AddSingleton<RabbitMqEventAggregator>();
+
+
+            builder.Services.AddHostedService<RabbitMqConsumerService>(sp =>
+                new RabbitMqConsumerService(
+                sp.GetRequiredService<RabbitMqHelper>(),
+                sp.GetRequiredService<RabbitMqEventAggregator>(),
+                "order.toorder",
+                ExchangeType.Topic,
+                "*.frompc"
+                )
+            );
+
+            builder.Services.AddHostedService<RabbitMqConsumerService>(sp =>
+                new RabbitMqConsumerService(
+                sp.GetRequiredService<RabbitMqHelper>(),
+                sp.GetRequiredService<RabbitMqEventAggregator>(),
+                "order.toorder",
+                ExchangeType.Topic,
+                "*.fromcart"
+                )
+            );
+
+            builder.Services.AddHostedService<RabbitMqConsumerService>(sp =>
+                new RabbitMqConsumerService(
+                sp.GetRequiredService<RabbitMqHelper>(),
+                sp.GetRequiredService<RabbitMqEventAggregator>(),
+                "api",
+                ExchangeType.Fanout,
+                null
+                )
+            );
+
+            builder.Services.AddHostedService<RabbitMqConsumerService>(sp =>
+                new RabbitMqConsumerService(
+                sp.GetRequiredService<RabbitMqHelper>(),
+                sp.GetRequiredService<RabbitMqEventAggregator>(),
+                "order",
+                ExchangeType.Fanout,
+                null
+                )
+            );
+
+
 
             //var rconnectionstring = builder.Configuration.GetConnectionString("RabbitMQConnection");
 

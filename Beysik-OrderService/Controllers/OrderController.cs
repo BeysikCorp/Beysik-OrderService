@@ -31,13 +31,35 @@ public class OrderController : ControllerBase
         }
     }
 
-    [HttpGet("/orders/{id}")]
+    [HttpGet("/orders")]
 
-    public async Task<ActionResult<Order>> Get(int id)
+    public async Task<ActionResult<Order>> Get([FromQuery]int orderId)
     {
         try
         {
-            var order = await Task.Run(() => _orderService.Get(id));
+            var order = await Task.Run(() => _orderService.Get(orderId));
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
+        }
+        catch (Exception)
+        {
+            // Log the exception (logging mechanism assumed)
+            // _logger.LogError(ex, "An error occurred while retrieving the order.");
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
+
+    [HttpGet("/orders/product")]
+
+    public async Task<ActionResult<string>> GetProduct([FromQuery] int orderId)
+    {
+        try
+        {
+            var order = await Task.Run(() => _orderService.Get(orderId));
             if (order == null)
             {
                 return NotFound();
@@ -53,16 +75,16 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost("/orders")]
-    public async Task<IActionResult> Post([FromBody] Order order)
+    public async Task<IActionResult> Post([FromBody] OrderRequest orderReq)
     {
-        if (order == null)
+        if (orderReq == null)
         {
             return BadRequest("Order cannot be null");
         }
         try
         {
-            await Task.Run(() => _orderService.Add(order));
-            return CreatedAtAction(nameof(Get), new { id = order.OrderID }, order);
+            await Task.Run(() => _orderService.AddAsync(orderReq));
+            return CreatedAtAction(nameof(Get), new { id = orderReq.UserID }, orderReq);
         }
         catch (Exception)
         {
@@ -72,8 +94,8 @@ public class OrderController : ControllerBase
         }
     }
 
-    [HttpPut("/orders/{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Order order)
+    [HttpPut("/orders")]
+    public async Task<IActionResult> Put([FromQuery] int id, [FromBody] Order order)
     {
         if (order == null || order.OrderID != id)
         {
