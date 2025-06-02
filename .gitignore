@@ -19,6 +19,7 @@ bld/
 [Ll]ogs/
 
 .vs/
+.vscode/
 
 # .NET Core
 project.lock.json

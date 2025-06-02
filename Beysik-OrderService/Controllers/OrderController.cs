@@ -31,9 +31,9 @@ public class OrderController : ControllerBase
         }
     }
 
-    [HttpGet("/orders")]
+    [HttpGet("/orders/id")]
 
-    public async Task<ActionResult<Order>> Get([FromQuery]int orderId)
+    public async Task<ActionResult<Order>> GetByID([FromQuery]int orderId)
     {
         try
         {

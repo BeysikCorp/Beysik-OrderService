@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beysik-OrderService", "Beys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beysik-Common", "..\..\Beysik-Common\Beysik-Common.csproj", "{D1DAF0F8-4A00-A48B-F072-2E267A96A6AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beysik-PCService", "..\..\Beysik-PCService\Beysik-PCService\Beysik-PCService.csproj", "{80BA068B-D202-6E53-39B0-9C7801DF6C42}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{D1DAF0F8-4A00-A48B-F072-2E267A96A6AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1DAF0F8-4A00-A48B-F072-2E267A96A6AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1DAF0F8-4A00-A48B-F072-2E267A96A6AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80BA068B-D202-6E53-39B0-9C7801DF6C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80BA068B-D202-6E53-39B0-9C7801DF6C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80BA068B-D202-6E53-39B0-9C7801DF6C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80BA068B-D202-6E53-39B0-9C7801DF6C42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
